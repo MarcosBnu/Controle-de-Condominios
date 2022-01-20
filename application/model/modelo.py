@@ -40,22 +40,17 @@ class Unidades (db.Model):#cria a tabela Unidades
     idunidades = db.Column(db.Integer, primary_key=True)#chave primaria
     condominio=db.Column(db.String(200), nullable=False)
     endereço= db.Column(db.String(400), nullable=False)
-    vencimento= db.Column(db.String(10), nullable=False)
     #nullable significa que o campo não pode ser nulo
-    
-    # relacionamento das clases
-    idproprietario = db.Column(db.Integer, db.ForeignKey(Inquilinos.id), nullable= False)
-    prop1 = db.relationship("Inquilinos", foreign_keys =  idproprietario)#chave estrangeira
+    proprietario = db.Column(db.String(400), nullable= False)
     def __str__(self):
-        return f'{str(self.idunidades)}, {self.condominio}, {self.endereço}, {self.vencimento}, {str({self.idproprietario})}'
+        return f'{str(self.idunidades)}, {self.condominio}, {self.endereço}, {self.proprietario}'
     #retorna em string as informaçoes
     def json(self):
         return{
             "idunidades" : self.idunidades,
             "condominio" : self.condominio,
-            "condominio" : self.condominio,
             "endereço" : self.endereço,
-            "idproprietario" : self.idproprietario,
+            "proprietario" : self.proprietario,
             #retorna em join as informaçoes
         }
 
