@@ -65,11 +65,11 @@ class Despesas(db.Model):#cria a tabela Despesas
     pagamento = db.Column(db.String, nullable= False)
     
     # relacionamento das clases
-    idunidade_despesa = db.Column(db.Integer, db.ForeignKey(Unidades.idunidades), nullable= False)
-    desuni = db.relationship("Unidades", foreign_keys =  idunidade_despesa)#chave estrangeira
+    unidade_despesa = db.Column(db.Integer, db.ForeignKey(Unidades.idunidades), nullable= False)
+    unidades = db.relationship("Unidades", foreign_keys =  unidade_despesa)#chave estrangeira
     #nullable significa que o campo não pode ser nulo
     def __str__(self):
-        return f'{str(self.iddespesas)}, {self.desc}, {self.tipo_despesa}, {self.valor}, {self.vencimento}, {self.pagamento}, {self.idunidade_despesa}'
+        return f'{str(self.iddespesas)}, {self.desc}, {self.tipo_despesa}, {self.valor}, {self.vencimento}, {self.pagamento}, {self.unidade_despesa}'
     #retorna em string as informaçoes
     def json(self):
         return{
@@ -79,7 +79,7 @@ class Despesas(db.Model):#cria a tabela Despesas
             "valor" : self.valor,
             "vencimento" : self.vencimento,
             "pagamento" : self.pagamento,
-            "idunidade_despesa" : self.idunidade_despesa,
+            "unidade_despesa": self.unidade_despesa
             #retorna em join as informaçoes
         }
         
