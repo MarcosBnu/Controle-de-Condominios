@@ -55,30 +55,25 @@
             <div style="background-color: #028090;" class="container">
                 <br>
                 <form onsubmit="return false;" class="row gx-3 gy-2 align-items-center" style="margin-bottom:0;">
-                    <div class="col-sm-3" style="width:28%; margin-left:5%;">
-                        <label id="campodate" class="visually-hidden" for="specificSizeInputGroupUsername">Username</label>
+                    <div class="col-sm-3" style="width:36%; margin-left:5%;">
+                        <label class="visually-hidden" for="specificSizeInputGroupUsername">Username</label>
                         <div class="input-group">
                         <div class="input-group-text"><img src="../imagens/calendar-check.svg" alt="MyLibrary"></div>
-                        <input type="date" class="form-control" id="specificSizeInputGroupUsername" placeholder="Username">
+                        <input type="date" class="form-control" id="campodate" placeholder="Username">
                         </div>
                     </div>
-                    <div class="col-sm-3" style="width:28%">
-                        <label id="campostatus" class="visually-hidden" for="specificSizeSelect">Preference</label>
-                        <select class="form-select" id="specificSizeSelect">
-                        <option selected>Choose...</option>
-                        <option value="Pago">Pago</option>
-                        <option value="Em aberto">Em aberto</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3" style="width:28%">
-                        <label id="camponomeunidade" class="visually-hidden" for="specificSizeInputGroupUsername">Nome da unidade</label>
+                    <div class="col-sm-3" style="width:34%">
+                        <label class="visually-hidden" for="specificSizeInputGroupUsername">Nome da unidade</label>
                         <div class="input-group">
                         <div class="input-group-text"></div>
-                        <input type="text" class="form-control" id="specificSizeInputGroupUsername" placeholder="Digite o nome da unidae">
+                        <input type="text" class="form-control" id="camponomeunidade" placeholder="Digite o nome da unidade">
                         </div>
                     </div>
                     <div class="col-auto">
-                        <button id="btLisdespesas" type="submit" class="btn btn-primary">Filtrar</button>
+                        <button id="btLisdespesas" type="submit" class="btn btn-primary">Pesquisar</button>
+                    </div>
+                    <div class="col-auto">
+                        <button id="btLimpardespesas" type="submit" class="btn btn-primary">Limpar filtro</button>
                     </div>
                 </form>
                 <br>

@@ -59,7 +59,7 @@ class Despesas(db.Model):#cria a tabela Despesas
     #cria as colunas
     iddespesas = db.Column(db.Integer, primary_key=True)#chave primaria
     desc=db.Column(db.String(500), nullable=False)
-    tipo_despesa=db.Column(db.String(100), nullable=False)
+    tipo_despesa=db.Column(db.String(10), nullable=False)
     valor= db.Column(db.Integer, nullable=False) 
     vencimento= db.Column(db.String, nullable=False)
     pagamento = db.Column(db.String, nullable= False)
