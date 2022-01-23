@@ -66,14 +66,10 @@ $(function() { // quando o documento estiver pronto/carregado
             alert("Aviso: lembre-se sempre de limpar o filtro antes de filtrar novamente")
             var data_filtro=new Date(date);
             for (var i in Usi1) { //i vale a posição no vetor
-                alert(date)
                 if(date!=""){
-                    alert("passou")
                     if(Usi1[i].pagamento=="Em aberto"){
-                        alert("passou1")
                         var data_venc=new Date(Usi1[i].vencimento)
                         if (data_venc<data_filtro){
-                            alert("passou2")
                             linhaUni='<div style="margin: 30px;">'+
                                 '<h1 class="card-title"> id da conta: ' + Usi1[i].iddespesas +'</h1>'+
                                 '<p class="card-text">Nome do Proprietario: '+ Usi1[i].desc + '</p>'+
@@ -99,8 +95,10 @@ $(function() { // quando o documento estiver pronto/carregado
                     '<p class="card-text">Institução Financeira: '+ Usi1[i].vencimento + '</p>'+
                     '<p class="card-text">Institução Financeira: '+ Usi1[i].pagamento + '</p>'+
                     '<p class="card-text">Institução Financeira: '+ Usi1[i].unidade_despesa + '</p>'+
-                    '</div>'+
-                    '<br>';
+                    '<p id="editar_' + Usi1[i].iddespesas +'"' + 
+                    'class="editar_despesas"><img src="../imagens/pencil-square.svg" '+ 
+                    'alt="editar despesas" title="editar despesas"></p>" '+
+                    '</div>';
                 // adiciona a linha no corpo da tabela
                     $('#lista_despesas').append(linhaUni);
                 }
@@ -113,4 +111,76 @@ $(function() { // quando o documento estiver pronto/carregado
     $(document).on("click", "#btLimpardespesas", function () {
         location.reload();
     })     
+});
+
+$(function() { // quando o documento estiver pronto/carregado
+    $(document).on("click", ".editar_despesas", function() {
+        // obter o ID do ícone que foi clicado
+        var componente_clicado = $(this).attr('id'); 
+        // no id do ícone, obter o ID da pessoa
+        var nome_icone = "editar_";
+        var id_pessoa = componente_clicado.substring(nome_icone.length);
+        // solicitar a exclusão da pessoa
+        $.ajax({
+            url: 'http://localhost:5000/editar_despesas/'+id_pessoa,
+            type: 'POST', // método da requisição
+            dataType: 'json', // os dados são recebidos no formato json
+            success: pessoasalva, // chama a função listar para processar o resultado
+            error: erroAosalvar
+        });
+        function pessoasalva (retorno) {
+            alert(retorno.detalhes)
+            window.location.href = 'editdespesas.html';
+        }
+        function erroAosalvar (retorno) {
+            // informar mensagem de erro
+            alert("erro");
+        }
+    });
+});
+
+$(function () { // quando o documento estiver pronto/carregado
+    // código para mapear click do botão incluir pessoa
+    $(document).on("click", "#btEDCadespesas", function () {
+        //pegar dados da tela
+        EDdescriçao = $("#campoEDdescriçao").val();
+        EDtipo_despesa = $("#campoEDtipo_despesa").val();
+        EDvalor = $("#campoEDvalor").val();
+        EDvencimento = $("#campoEDvencimento").val();
+        EDpagamento = $("#campoEDpagamento").val();
+        EDidunidade_despesa = $("#campoEDidunidade_despesa").val();
+        // preparar dados no formato json
+        var dados = JSON.stringify({EDdescriçao: EDdescriçao, EDtipo_despesa: EDtipo_despesa, EDvalor: EDvalor, EDvencimento:EDvencimento, EDpagamento:EDpagamento, EDidunidade_despesa:EDidunidade_despesa});
+        // fazer requisição para o back-end
+        $.ajax({
+            url: 'http://localhost:5000/editar_despesa',
+            type: 'POST',
+            dataType: 'json', // os dados são recebidos no formato json
+            contentType: 'application/json', // tipo dos dados enviados
+            data: dados, // estes são os dados enviados
+            success: editar_despesa, // chama a função editar_despesa para processar o resultado
+            error: erroAoIncluir
+        });
+        function editar_despesa (retorno) {
+            if (retorno.resultado == "ok") { // a operação deu certo?
+                // informar resultado de sucesso
+                alert("Despesa alterada com sucesso!");
+                window.location.href = 'despesas.html';
+                // limpar os campos
+                $("#campoEDdescriçao").val();
+                $("#campoEDtipo_despesa").val();
+                $("#campoEDvalor").val();
+                $("#campoEDvencimento").val();
+                $("#campoET_conta").val();
+                $("#campoEDidunidade_despesa").val();
+            } else {
+                // informar mensagem de erro
+                alert(retorno.resultado + ":" + retorno.detalhes);
+            }            
+        }
+        function erroAoIncluir (retorno) {
+            // informar mensagem de erro
+            alert("ERRO: "+retorno.resultado + ":" + retorno.detalhes);
+        }
+    });
 });

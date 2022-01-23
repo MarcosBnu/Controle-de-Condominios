@@ -121,4 +121,52 @@ def listar_despesas():
     # adicionar cabeçalho de liberação de origem
     resposta.headers.add("Access-Control-Allow-Origin", "*")
     return resposta  # responder!
+
+@app.route("/editar_despesas/<int:pessoa_id>", methods=["POST"]) 
+def editar_despesas(pessoa_id): 
+   # preparar uma resposta otimista 
+   np.clear()
+   try: 
+       np.append(pessoa_id)
+       resposta = jsonify({"resultado": "ok", "detalhes": str(np)}) 
+   except Exception as e: 
+      # informar mensagem de erro 
+      resposta = jsonify({"resultado":"erro", "detalhes":str(e)}) 
+   # adicionar cabeçalho de liberação de origem 
+   resposta.headers.add("Access-Control-Allow-Origin", "*") 
+   return resposta # responder!
+
+@app.route("/editar_despesa", methods=['POST'])
+def editar_despesa():
+    dados = request.get_json() #pego os dados para atualizar
+    valor=np[0]#recebe a id do usuario logado
+    objeto=Despesas.query.filter_by(iddespesas=valor).first()#busca no banco de dados as informaçoes
+    resposta = jsonify({"resultado": "ok", "detalhes": "ok"})#mensagem positiva
+    try:
+        #os if a baixo verifica o que o usuario deseja alterar
+        if dados["EDdescriçao"]!="":
+            objeto.desc = dados['EDdescriçao']
+        if dados["EDtipo_despesa"]!="":
+            objeto.tipo_despesa = dados['EDtipo_despesa']
+        if dados["EDvalor"]!="":
+            objeto.valor = dados['EDvalor']
+        if dados["EDvencimento"]!="":
+            objeto.vencimento = dados['EDvencimento']
+        if dados["EDpagamento"]!="":
+            objeto.pagamento = dados['EDpagamento']
+        if dados["EDidunidade_despesa"]!="":
+            informaçoes_unidade=Unidades.query.filter_by(idunidades=dados['EDidunidade_despesa']).first()
+            if informaçoes_unidade:
+                objeto.unidade_despesa = dados['EDidunidade_despesa']
+            else:
+                resposta = jsonify({"resultado": "erro", "detalhes": "voce digitou uma unidade que ainda não existe, cadastre essa unidade primeiro"}) 
+        db.session.add(objeto)#salva as alterações no banco
+        db.session.commit()#confirma as alterações
+    except Exception as e:
+        # informar mensagem de erro
+        resposta = jsonify({"resultado":"erro", "detalhes":str(valor)})
+        # adicionar cabeçalho de liberação de origem
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta # responder!
+
 app.run(debug = True, host="0.0.0.0")
