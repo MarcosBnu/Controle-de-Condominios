@@ -85,10 +85,14 @@ $(function() { // quando o documento estiver pronto/carregado
                                     '<p>Unidade da despesa: '+ Usi1[i].unidade_despesa + '</p>'+
                                     '<div class="linha">'+
                                     '<p style="display:inline-block">Status: '+ Usi1[i].pagamento + '</p>'+
-                                    '<p id="editar_' + Usi1[i].iddespesas +'"' + 
-                                    'class="editar_despesas btn"><img style="possition: relative; right:100px" src="../imagens/pencil-square.svg" '+ 
-                                    'alt="editar despesas" title="editar despesas"></p>'+
+                                    '<div style="margin-left:20%" class="img-container">'+
+                                        '<p id="editar_' + Usi1[i].iddespesas +'"' + 
+                                        'class="editar_despesas btn"><img src="../imagens/pencil-square.svg" '+ 
+                                        'alt="editar despesas" title="editar despesas"></p>'+
                                     '</div>'+
+                                    '<div class="linha"></div>'+
+                                    '</div>'+
+                                '</div>'+
                             '</div>'+
                         '</div>';
                             // adiciona a linha no corpo da tabela
