@@ -1,5 +1,5 @@
 
-from config import db
+from model.config import db
 import os
 #importa as bibliotecas necessarias do arquivo __init__.py
 
