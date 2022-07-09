@@ -55,15 +55,14 @@ $(function() { // quando o documento estiver pronto/carregado
         // percorrer a lista de Usi1 retornadas;
         for (var i in Usi1) { //i vale a posição no vetor
             linhaUni=
-            '<div class="divisoria">'+
-                '<div class="linha"></div>'+
-                '<h3 class="titulo"> id da unidade: ' + Usi1[i].idunidades +'</h3>'+
-                '<div style="background-color: #f0efefef;" classe="row-1">'+
-                    '<p>Nome da Unidade: '+ Usi1[i].unidade_nome + '</p>'+
-                    '<p>Nome do condominio: '+ Usi1[i].condominio + '</p>'+
-                    '<p>Endereço: '+ Usi1[i].endereço + '</p>'+
-                    '<div class="linha"></div>'+
-                    '<p style="background-color: #e9dcdcef; height:100px%">Proprietario: '+ Usi1[i].proprietario + '</p>'
+            '<div class="card text-white bg-primary mb-3" style="max-width: 100%;">'+
+                '<div class="card-header">id da unidade: ' + Usi1[i].idunidades +'</div>'+
+                '<div class="card-body">'+
+                    '<h3 class="card-title">Nome da Unidade: '+ Usi1[i].unidade_nome + '</h3>'+
+                    '<hr>'+
+                    '<p class="card-text">Nome do condominio: '+ Usi1[i].condominio + '</p>'+
+                    '<hr>'+
+                    '<p class="card-text">Endereço: '+ Usi1[i].endereço + '</p>'+
                 '</div>'+
             '</div>';
             // adiciona a linha no corpo da tabela

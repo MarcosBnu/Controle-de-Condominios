@@ -167,3 +167,17 @@ def editar_despesa():
         # adicionar cabeçalho de liberação de origem
     resposta.headers.add("Access-Control-Allow-Origin", "*")
     return resposta # responder!
+
+#rota para apagar, recebe o id da despesa 
+@app.route("/deletar_despesas/<int:id_pessoa>", methods=["DELETE"]) 
+def cont_del(id_pessoa):
+    try:
+        resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
+        Despesas.query.filter(Despesas.iddespesas == id_pessoa).delete() # excluir a despesa do ID informado
+        db.session.commit()
+    except Exception as e:
+        # informar mensagem de erro
+        resposta = jsonify({"resultado":"erro", "detalhes":str(e)})
+        # adicionar cabeçalho de liberação de origem
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta # responder!

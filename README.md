@@ -1,5 +1,5 @@
-<h2>🔥 DESAFIO DE PROGRAMAÇÃO – AP CODERS</h2>
-<p>Repositórios destinado ao desafio de programação Ap Coders, desenvolvi um sistema que auxilia no cadastro e na gestão de inquilinos e unidades de um condomínio.<br><br>
+<h2>🔥 DESAFIO DE PROGRAMAÇÃO</h2>
+<p>Desenvolvi um sistema que auxilia no cadastro e na gestão de inquilinos e unidades de um condomínio.<br><br>
 Para isso desenvolvi um sistema com front-end em html e javascript, e um back-end em python, utilizando principalmente a biblioteca Flask.</p>
 
 <h2>🖥️ Tecnologias Utilizadas</h2>

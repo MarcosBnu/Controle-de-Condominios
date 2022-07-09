@@ -75,26 +75,25 @@ $(function() { // quando o documento estiver pronto/carregado
                         var data_venc=new Date(Usi1[i].vencimento)//transforma em data
                         if (data_venc<data_filtro){//filtro de data
                             linhaUni=
-                            '<div class="divisoria">'+
-                            '<div class="linha"></div>'+
-                                '<h3 class="titulo"> id da despesa: ' + Usi1[i].iddespesas +'</h3>'+
-                                '<div style="background-color: #f0efefef;" classe="row-1">'+
-                                    '<p>Descrição da despesa: '+ Usi1[i].desc + '</p>'+
-                                    '<p>Tipo de Despesa: '+ Usi1[i].tipo_despesa + '</p>'+
-                                    '<p>Data de vencimento: '+ Usi1[i].vencimento + '</p>'+
-                                    '<p>Unidade da despesa: '+ Usi1[i].unidade_despesa + '</p>'+
-                                    '<div class="linha">'+
-                                    '<p style="display:inline-block">Status: '+ Usi1[i].pagamento + '</p>'+
-                                    '<div style="margin-left:20%" class="img-container">'+
-                                        '<p id="editar_' + Usi1[i].iddespesas +'"' + 
-                                        'class="editar_despesas btn"><img src="../imagens/pencil-square.svg" '+ 
-                                        'alt="editar despesas" title="editar despesas"></p>'+
+                                '<div class="card text-white bg-primary mb-3" style="max-width: 100%;">'+
+                                    '<div class="card-header">id da despesa: ' + Usi1[i].iddespesas +'</div>'+
+                                    '<div class="card-body">'+
+                                        '<h3 class="card-title">Descrição da despesa: '+ Usi1[i].desc + '</h3>'+
+                                        '<hr>'+
+                                        '<p class="card-text">Tipo de Despesa: '+ Usi1[i].tipo_despesa + '</p>'+
+                                        '<hr>'+
+                                        '<p class="card-text">Data de vencimento: '+ Usi1[i].vencimento + '</p>'+
+                                        '<hr>'+
+                                        '<p class="card-text">Unidade da despesa: '+ Usi1[i].unidade_despesa + '</p>'+
+                                        '<hr>'+
+                                        '<p class="card-text">Status: '+ Usi1[i].pagamento + '</p>'+
+                                        '<div style="margin-left:20%" class="img-container">'+
+                                                '<p id="editar_' + Usi1[i].iddespesas +'"' + 
+                                                'class="editar_despesas btn"><img src="../imagens/pencil-square.svg" '+ 
+                                                'alt="editar despesas" title="editar despesas"></p>'+
+                                        '</div>'+
                                     '</div>'+
-                                    '<div class="linha"></div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>';
+                                '</div>';
                             // adiciona a linha no corpo da tabela
                             $('#lista_despesas').append(linhaUni);
                         }
@@ -102,26 +101,30 @@ $(function() { // quando o documento estiver pronto/carregado
                 }   
                 else{
                     linhaUni=
-                    '<div class="divisoria">'+
-                    '<div class="linha"></div>'+
-                        '<h3 class="titulo"> id da despesa: ' + Usi1[i].iddespesas +'</h3>'+
-                        '<div style="background-color: #f0efefef;" classe="row-1">'+
-                            '<p>Descrição da despesa: '+ Usi1[i].desc + '</p>'+
-                            '<p>Tipo de Despesa: '+ Usi1[i].tipo_despesa + '</p>'+
-                            '<p>Data de vencimento: '+ Usi1[i].vencimento + '</p>'+
-                            '<p>Unidade da despesa: '+ Usi1[i].unidade_despesa + '</p>'+
-                            '<div class="linha">'+
-                            '<p style="display:inline-block">Status: '+ Usi1[i].pagamento + '</p>'+
-                            '<div style="margin-left:20%" class="img-container">'+
-                                '<p id="editar_' + Usi1[i].iddespesas +'"' + 
-                                'class="editar_despesas btn"><img src="../imagens/pencil-square.svg" '+ 
-                                'alt="editar despesas" title="editar despesas"></p>'+
+                    '<div class="card text-white bg-primary mb-3" style="max-width: 100%;">'+
+                        '<div class="card-header">id da despesa: ' + Usi1[i].iddespesas +'</div>'+
+                        '<div class="card-body">'+
+                            '<h3 class="card-title">Descrição da despesa: '+ Usi1[i].desc + '</h3>'+
+                            '<hr>'+
+                            '<p class="card-text">Tipo de Despesa: '+ Usi1[i].tipo_despesa + '</p>'+
+                            '<hr>'+
+                            '<p class="card-text">Data de vencimento: '+ Usi1[i].vencimento + '</p>'+
+                            '<hr>'+
+                            '<p class="card-text">Unidade da despesa: '+ Usi1[i].unidade_despesa + '</p>'+
+                            '<hr>'+
+                            '<p class="card-text">Status: '+ Usi1[i].pagamento + '</p>'+
+                            '<div class="img-container">'+
+                                    '<p id="editar_' + Usi1[i].iddespesas +'"' + 
+                                    'class="editar_despesas btn"><img src="../imagens/pencil-square.svg" '+ 
+                                    'alt="editar despesas" title="editar despesas"></p>'+
                             '</div>'+
-                            '<div class="linha"></div>'+
+                            '<div class="img-container">'+
+                                '<p id="deletar_' + Usi1[i].iddespesas +'"' + 
+                                'class="deletar_despesas btn"><img src="../imagens/deletar.png" '+ 
+                                'alt="deletar despesas" title="deletar despesas"></p>'+
                             '</div>'+
                         '</div>'+
-                    '</div>'+
-                '</div>';
+                    '</div>';
                 // adiciona a linha no corpo da tabela
                     $('#lista_despesas').append(linhaUni);
                 }
@@ -155,6 +158,32 @@ $(function() { // quando o documento estiver pronto/carregado
         function pessoasalva (retorno) {
             alert(retorno.detalhes)
             window.location.href = 'editdespesas.html';
+        }
+        function erroAosalvar (retorno) {
+            // informar mensagem de erro
+            alert("erro");
+        }
+    });
+});
+
+
+$(function() { // quando o documento estiver pronto/carregado
+    $(document).on("click", ".deletar_despesas", function() {
+        // obter o ID do ícone que foi clicado
+        var componente_clicado = $(this).attr('id'); 
+        // no id do ícone
+        var nome_icone = "deletar_";
+        var id_pessoa = componente_clicado.substring(nome_icone.length);
+        // solicitar a edição da despesa
+        $.ajax({
+            url: 'http://localhost:5000/deletar_despesas/'+id_pessoa,
+            type: 'DELETE', // método da requisição
+            dataType: 'json', // os dados são recebidos no formato json
+            success: pessoasalva, // chama a função pessoasalva para processar o resultado
+            error: erroAosalvar
+        });
+        function pessoasalva (retorno) {
+            location.reload();
         }
         function erroAosalvar (retorno) {
             // informar mensagem de erro

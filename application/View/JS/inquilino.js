@@ -58,16 +58,18 @@ $(function() { // quando o documento estiver pronto/carregado
         // percorrer a lista de Usi retornadas;
         for (var i in Usi) { //i vale a posição no vetor
             lin=
-                '<div class="divisoria">'+
-                '<div class="linha"></div>'+
-                '<h3 class="titulo"> id da conta: ' + Usi[i].id +'</h3>'+
-                '<div style="background-color: #f0efefef;" classe="row-1">'+
-                    '<p>Idade do inquilino: '+ Usi[i].idade + '</p>'+
-                    '<p>Sexo: '+ Usi[i].sexo + '</p>'+
-                    '<p>Tel: '+ Usi[i].telefone + '</p>'+
-                    '<p>Email: '+ Usi[i].email + '</p>'+
-                    '<div class="linha"></div>'+
-                    '<p style="background-color: #e9dcdcef; height:100px%">Nome do Proprietario: '+ Usi[i].nome_inquilino + '</p>'
+            '<div class="card text-white bg-primary mb-3" style="max-width: 95%;">'+
+                '<div class="card-header">id da conta: ' + Usi[i].id +'</div>'+
+                '<div class="card-body">'+
+                    '<h3 class="card-title">Nome do Proprietario: '+ Usi[i].nome_inquilino + '</h3>'+
+                    '<hr>'+
+                    '<p class="card-text">Sexo: '+ Usi[i].sexo + '</p>'+
+                    '<hr>'+
+                    '<p class="card-text">Idade do inquilino: '+ Usi[i].idade + '</p>'+
+                    '<hr>'+
+                    '<p class="card-text">Tel: '+ Usi[i].telefone + '</p>'+
+                    '<hr>'+
+                    '<p class="card-text">Email:'+ Usi[i].email + '</p>'+
                 '</div>'+
             '</div>';
             // adiciona a linha no corpo da tabela
